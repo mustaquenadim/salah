@@ -4,6 +4,13 @@
 @import 'tw-animate-css';
 
 @theme {
+  /*
+   * Geist is registered natively as a single family with weight variants by the
+   * expo-font config plugin in app.json, so font-medium/semibold/bold resolve
+   * to the right cut rather than needing a family per weight.
+   */
+  --font-sans: Geist;
+
   --radius: 10px;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -13,79 +20,90 @@
   --spacing-hairline: hairlineWidth();
 }
 
+/*
+ * Emerald primary with an amber `highlight` for time-sensitive state
+ * (next prayer, countdown). `accent` keeps its shadcn meaning -- the subtle
+ * hover/active surface -- so it stays a near-neutral, not the brand accent.
+ *
+ * Mirrored as hsl in src/lib/theme.ts for NAV_THEME. Change both together.
+ */
 @layer theme {
   :root {
     @variant light {
-      --color-background: oklch(1 0 0);
-      --color-foreground: oklch(0.145 0 0);
+      --color-background: oklch(0.9853 0.0029 84.56);
+      --color-foreground: oklch(0.2323 0.0163 168.44);
       --color-card: oklch(1 0 0);
-      --color-card-foreground: oklch(0.145 0 0);
+      --color-card-foreground: oklch(0.2323 0.0163 168.44);
       --color-popover: oklch(1 0 0);
-      --color-popover-foreground: oklch(0.145 0 0);
-      --color-primary: oklch(0.205 0 0);
-      --color-primary-foreground: oklch(0.985 0 0);
-      --color-secondary: oklch(0.97 0 0);
-      --color-secondary-foreground: oklch(0.205 0 0);
-      --color-muted: oklch(0.97 0 0);
-      --color-muted-foreground: oklch(0.556 0 0);
-      --color-accent: oklch(0.97 0 0);
-      --color-accent-foreground: oklch(0.205 0 0);
-      --color-destructive: oklch(0.577 0.245 27.325);
-      --color-border: oklch(0.922 0 0);
-      --color-input: oklch(0.922 0 0);
-      --color-ring: oklch(0.708 0 0);
-      --color-chart-1: oklch(0.646 0.222 41.116);
-      --color-chart-2: oklch(0.6 0.118 184.704);
-      --color-chart-3: oklch(0.398 0.07 227.392);
-      --color-chart-4: oklch(0.828 0.189 84.429);
-      --color-chart-5: oklch(0.769 0.188 70.08);
-      --color-sidebar: oklch(0.985 0 0);
-      --color-sidebar-foreground: oklch(0.145 0 0);
-      --color-sidebar-primary: oklch(0.205 0 0);
-      --color-sidebar-primary-foreground: oklch(0.985 0 0);
-      --color-sidebar-accent: oklch(0.97 0 0);
-      --color-sidebar-accent-foreground: oklch(0.205 0 0);
-      --color-sidebar-border: oklch(0.922 0 0);
-      --color-sidebar-ring: oklch(0.708 0 0);
+      --color-popover-foreground: oklch(0.2323 0.0163 168.44);
+      --color-primary: oklch(0.4781 0.0993 162.48);
+      --color-primary-foreground: oklch(1 0 0);
+      --color-secondary: oklch(0.958 0.0051 145.54);
+      --color-secondary-foreground: oklch(0.2323 0.0163 168.44);
+      --color-muted: oklch(0.958 0.0051 145.54);
+      --color-muted-foreground: oklch(0.513 0.0212 165.73);
+      --color-accent: oklch(0.9445 0.0066 160.07);
+      --color-accent-foreground: oklch(0.2323 0.0163 168.44);
+      --color-highlight: oklch(0.6637 0.1368 76.56);
+      --color-highlight-foreground: oklch(1 0 0);
+      --color-destructive: oklch(0.555 0.1737 29.25);
+      --color-border: oklch(0.9248 0.0051 145.53);
+      --color-input: oklch(0.9248 0.0051 145.53);
+      --color-ring: oklch(0.4781 0.0993 162.48);
+      --color-chart-1: oklch(0.4781 0.0993 162.48);
+      --color-chart-2: oklch(0.6267 0.1168 164.75);
+      --color-chart-3: oklch(0.6637 0.1368 76.56);
+      --color-chart-4: oklch(0.6671 0.0478 163.1);
+      --color-chart-5: oklch(0.7507 0.1295 79.85);
+      --color-sidebar: oklch(0.9718 0.0028 128.49);
+      --color-sidebar-foreground: oklch(0.2323 0.0163 168.44);
+      --color-sidebar-primary: oklch(0.4781 0.0993 162.48);
+      --color-sidebar-primary-foreground: oklch(1 0 0);
+      --color-sidebar-accent: oklch(0.9445 0.0066 160.07);
+      --color-sidebar-accent-foreground: oklch(0.2323 0.0163 168.44);
+      --color-sidebar-border: oklch(0.9248 0.0051 145.53);
+      --color-sidebar-ring: oklch(0.4781 0.0993 162.48);
     }
 
     @variant dark {
-      --color-background: oklch(0.145 0 0);
-      --color-foreground: oklch(0.985 0 0);
-      --color-card: oklch(0.205 0 0);
-      --color-card-foreground: oklch(0.985 0 0);
-      --color-popover: oklch(0.205 0 0);
-      --color-popover-foreground: oklch(0.985 0 0);
-      --color-primary: oklch(0.922 0 0);
-      --color-primary-foreground: oklch(0.205 0 0);
-      --color-secondary: oklch(0.269 0 0);
-      --color-secondary-foreground: oklch(0.985 0 0);
-      --color-muted: oklch(0.269 0 0);
-      --color-muted-foreground: oklch(0.708 0 0);
-      --color-accent: oklch(0.269 0 0);
-      --color-accent-foreground: oklch(0.985 0 0);
-      --color-destructive: oklch(0.704 0.191 22.216);
+      --color-background: oklch(0.1631 0.0077 163.85);
+      --color-foreground: oklch(0.9578 0.0091 161.35);
+      --color-card: oklch(0.2074 0.0085 169.39);
+      --color-card-foreground: oklch(0.9578 0.0091 161.35);
+      --color-popover: oklch(0.2074 0.0085 169.39);
+      --color-popover-foreground: oklch(0.9578 0.0091 161.35);
+      --color-primary: oklch(0.7729 0.1535 163.22);
+      --color-primary-foreground: oklch(0.2312 0.0391 169.13);
+      --color-secondary: oklch(0.2568 0.0107 176.3);
+      --color-secondary-foreground: oklch(0.9578 0.0091 161.35);
+      --color-muted: oklch(0.2568 0.0107 176.3);
+      --color-muted-foreground: oklch(0.6776 0.0216 164.28);
+      --color-accent: oklch(0.2802 0.0125 170.73);
+      --color-accent-foreground: oklch(0.9578 0.0091 161.35);
+      --color-highlight: oklch(0.8369 0.1644 84.43);
+      --color-highlight-foreground: oklch(0.2242 0.0424 87.17);
+      --color-destructive: oklch(0.6776 0.1748 26.82);
       --color-border: oklch(1 0 0 / 10%);
       --color-input: oklch(1 0 0 / 15%);
-      --color-ring: oklch(0.556 0 0);
-      --color-chart-1: oklch(0.488 0.243 264.376);
-      --color-chart-2: oklch(0.696 0.17 162.48);
-      --color-chart-3: oklch(0.769 0.188 70.08);
-      --color-chart-4: oklch(0.627 0.265 303.9);
-      --color-chart-5: oklch(0.645 0.246 16.439);
-      --color-sidebar: oklch(0.205 0 0);
-      --color-sidebar-foreground: oklch(0.985 0 0);
-      --color-sidebar-primary: oklch(0.488 0.243 264.376);
-      --color-sidebar-primary-foreground: oklch(0.985 0 0);
-      --color-sidebar-accent: oklch(0.269 0 0);
-      --color-sidebar-accent-foreground: oklch(0.985 0 0);
-      --color-sidebar-border: oklch(1 0 0 / 10%);
-      --color-sidebar-ring: oklch(0.556 0 0);
+      --color-ring: oklch(0.7729 0.1535 163.22);
+      --color-chart-1: oklch(0.7729 0.1535 163.22);
+      --color-chart-2: oklch(0.6959 0.1491 162.48);
+      --color-chart-3: oklch(0.8369 0.1644 84.43);
+      --color-chart-4: oklch(0.8452 0.1299 164.98);
+      --color-chart-5: oklch(0.7686 0.1647 70.08);
+      --color-sidebar: oklch(0.2074 0.0085 169.39);
+      --color-sidebar-foreground: oklch(0.9578 0.0091 161.35);
+      --color-sidebar-primary: oklch(0.7729 0.1535 163.22);
+      --color-sidebar-primary-foreground: oklch(0.2312 0.0391 169.13);
+      --color-sidebar-accent: oklch(0.2802 0.0125 170.73);
+      --color-sidebar-accent-foreground: oklch(0.9578 0.0091 161.35);
+      --color-sidebar-border: oklch(0.2924 0.0124 170.8);
+      --color-sidebar-ring: oklch(0.7729 0.1535 163.22);
     }
   }
 }
 
-/* Consumed on web via `var(--font-*)` in src/constants/theme.ts */
+/* Consumed on web via `var(--font-*)` */
 :root {
   --font-display:
     Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
