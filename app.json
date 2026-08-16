@@ -6,6 +6,12 @@
     "icon": "./assets/images/icon.png",
     "scheme": "salah",
     "userInterfaceStyle": "automatic",
+    "updates": {
+      "url": "https://u.expo.dev/e77a1067-35c8-4655-9ab0-eea09e88ed1b"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "ios": {
       "icon": "./assets/expo.icon"
     },
