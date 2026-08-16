@@ -1,6 +1,7 @@
 import { TabList, TabSlot, Tabs, TabTrigger } from 'expo-router/ui';
 
 import { FloatingTabBar, FloatingTabBarButton, TABS } from '@/components/floating-tab-bar';
+import { MeshGradientBackground } from '@/components/mesh-gradient-background';
 
 /**
  * Headless tabs, so the bar is ours to draw. `TabSlot` fills the screen and the
@@ -14,6 +15,9 @@ import { FloatingTabBar, FloatingTabBarButton, TABS } from '@/components/floatin
 export default function TabsLayout() {
   return (
     <Tabs>
+      {/* First child, so every screen paints over it. Tabs ignores children
+          that are not a TabList or TabTrigger when it collects routes. */}
+      <MeshGradientBackground />
       <TabSlot />
       <TabList asChild>
         <FloatingTabBar>

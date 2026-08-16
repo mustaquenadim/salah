@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/text';
 
 export default function QiblaScreen() {
   return (
-    <View className="bg-background flex-1 items-center justify-center gap-2 p-6">
+    <View className="flex-1 items-center justify-center gap-2 p-6">
       <Text variant="h3">Qibla</Text>
       <Text variant="muted">Start building here.</Text>
     </View>
