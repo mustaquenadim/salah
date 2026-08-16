@@ -18,7 +18,10 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
-      <Stack screenOptions={SCREEN_OPTIONS} />
+      <Stack screenOptions={SCREEN_OPTIONS}>
+        {/* The tab group draws its own chrome, so the stack header stays out of the way. */}
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
       <PortalHost />
     </ThemeProvider>
   );
