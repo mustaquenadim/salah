@@ -1,22 +1,19 @@
 import '../global.css';
 
 import { PortalHost } from '@rn-primitives/portal';
-import { ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { Stack, ThemeProvider } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { useUniwind } from 'uniwind';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
 import { NAV_THEME } from '@/lib/theme';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
+export default function RootLayout() {
   const { theme } = useUniwind();
+
   return (
     <ThemeProvider value={NAV_THEME[theme ?? 'light']}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
+      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+      <Stack />
       <PortalHost />
     </ThemeProvider>
   );

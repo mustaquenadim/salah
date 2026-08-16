@@ -3,6 +3,7 @@ import { Platform, TextInput } from 'react-native';
 
 function Input({
   className,
+  placeholderClassName,
   ...props
 }: React.ComponentProps<typeof TextInput> & React.RefAttributes<TextInput>) {
   return (
