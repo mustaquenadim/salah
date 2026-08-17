@@ -31,6 +31,16 @@
     },
     "plugins": [
       "expo-router",
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Salah uses your location to calculate accurate prayer times for where you are.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false
+        }
+      ],
       [
         "expo-splash-screen",
         {
