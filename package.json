@@ -90,6 +90,8 @@
     "ios": "expo start -c --ios",
     "web": "expo start -c --web",
     "lint": "expo lint",
+    "uniwind:types": "uniwind generate-artifacts --css ./src/global.css --dts ./src/uniwind-types.d.ts",
+    "pretypecheck": "npm run uniwind:types",
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "clean": "rm -rf .expo node_modules"
