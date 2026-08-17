@@ -14,6 +14,8 @@ export const STORAGE_KEYS = {
   settings: 'salah.prayer-settings.v1',
   /** Which prayers the user wants an alarm for. */
   reminders: 'salah.prayer-reminders.v1',
+  /** Tasbih count, loops, target, chosen dhikr and bead skin. */
+  tasbih: 'salah.tasbih.v1',
 } as const;
 
 /*
