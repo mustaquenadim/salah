@@ -19,10 +19,11 @@ type NextPrayerHeroProps = {
 /**
  * The focal card: which prayer is next, when it is, and how long is left.
  *
- * This is where the amber `highlight` token is spent -- the hairline border,
+ * This is where the gold `highlight` token is spent -- the hairline border,
  * the badge, the countdown digits and the progress fill. Keeping all of it in
- * one cluster is what makes amber read as "this is the part that is changing"
- * rather than as a second brand colour competing with the emerald primary.
+ * one cluster is what makes gold read as "this is the part that is changing"
+ * rather than as a second brand colour competing with the midnight-blue
+ * primary. Both come out of the same photo: the lamps and the water.
  */
 export function NextPrayerHero({ timeline, use24h }: NextPrayerHeroProps) {
   const { next, current, windowStart, nextIsTomorrow } = timeline;

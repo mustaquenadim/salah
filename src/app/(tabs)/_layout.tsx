@@ -2,6 +2,7 @@ import { TabList, TabSlot, Tabs, TabTrigger } from 'expo-router/ui';
 
 import { FloatingTabBar, FloatingTabBarButton, TABS } from '@/components/floating-tab-bar';
 import { MeshGradientBackground } from '@/components/mesh-gradient-background';
+import { PrayerAlerts } from '@/components/prayer-alerts';
 
 /**
  * Headless tabs, so the bar is ours to draw. `TabSlot` fills the screen and the
@@ -19,6 +20,9 @@ export default function TabsLayout() {
           that are not a TabList or TabTrigger when it collects routes. */}
       <MeshGradientBackground />
       <TabSlot />
+      {/* After TabSlot so the adhan banner floats over the screens, before the
+          TabList so the bar stays on top of it. */}
+      <PrayerAlerts />
       <TabList asChild>
         <FloatingTabBar>
           {TABS.map((tab) => (

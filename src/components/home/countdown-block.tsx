@@ -53,7 +53,7 @@ export function CountdownBlock({ start, end, label, use24h }: CountdownBlockProp
 
       {/* Both classes are required: the root defaults to bg-primary/20 and the
           native indicator to bg-foreground, either of which would break the
-          amber grouping. */}
+          gold grouping. */}
       <Progress
         value={percent}
         className="bg-highlight/15 h-1.5"

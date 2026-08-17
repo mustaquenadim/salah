@@ -3,8 +3,9 @@
  *
  * The colors sit deliberately close to `--color-background` in src/global.css so
  * the gradient reads as light falling on the backdrop rather than as artwork:
- * two emerald lifts, one warm whisper from the `highlight` family, and the rest
- * within a few percent lightness of the base. Screens keep full text contrast.
+ * a few midnight-blue lifts, one warm whisper from the `highlight` family --
+ * standing in for the lamplight in the home photo -- and the rest within a few
+ * percent lightness of the base. Screens keep full text contrast.
  *
  * Like src/lib/theme.ts, these are hand-mirrored from the CSS tokens -- if the
  * background or primary hue moves there, retune these too.
@@ -33,25 +34,25 @@ export const MESH_POINTS = [
 /** Row-major, matching {@link MESH_POINTS} index for index. */
 export const MESH_COLORS: Record<'light' | 'dark', string[]> = {
   light: [
-    'hsl(152 30% 93.5%)',
-    'hsl(44 34% 97%)',
-    'hsl(160 26% 94.5%)',
-    'hsl(42 28% 97.6%)',
-    'hsl(150 18% 96.2%)',
-    'hsl(158 30% 92.8%)',
-    'hsl(42 42% 95.6%)',
-    'hsl(40 27.3% 97.8%)',
-    'hsl(154 24% 94.2%)',
+    'hsl(210 88.9% 96.5%)',
+    'hsl(30 80% 98%)',
+    'hsl(216.9 100% 97.5%)',
+    'hsl(34.3 77.8% 98.2%)',
+    'hsl(212.7 100% 97.8%)',
+    'hsl(213.3 100% 96.5%)',
+    'hsl(30 85.7% 97.3%)',
+    'hsl(216 100% 99%)',
+    'hsl(216 100% 97.1%)',
   ],
   dark: [
-    'hsl(160 34% 10.5%)',
-    'hsl(154 20% 6.6%)',
-    'hsl(164 30% 9%)',
-    'hsl(150 16% 5.4%)',
-    'hsl(157 22% 7.6%)',
-    'hsl(162 38% 11.5%)',
-    'hsl(44 22% 8%)',
-    'hsl(152 16% 5.6%)',
-    'hsl(158 30% 9.5%)',
+    'hsl(211.4 87.5% 9.4%)',
+    'hsl(217.1 72.4% 5.7%)',
+    'hsl(218.2 70.2% 9.2%)',
+    'hsl(216 76.9% 5.1%)',
+    'hsl(215.2 78.4% 7.3%)',
+    'hsl(209.4 95.9% 9.6%)',
+    'hsl(27.9 93.3% 5.9%)',
+    'hsl(217.1 77.8% 5.3%)',
+    'hsl(216.7 75% 9.4%)',
   ],
 };

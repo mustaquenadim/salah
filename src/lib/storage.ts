@@ -12,6 +12,8 @@ export const STORAGE_KEYS = {
   /** `'auto' | 'manual'` -- whether GPS is allowed to overwrite the location. */
   locationMode: 'salah.location-mode.v1',
   settings: 'salah.prayer-settings.v1',
+  /** Which prayers the user wants an alarm for. */
+  reminders: 'salah.prayer-reminders.v1',
 } as const;
 
 /*

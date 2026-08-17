@@ -1,3 +1,4 @@
+import { AlarmClock, AlarmClockOff } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
 import { FadeInDown, ReduceMotion } from 'react-native-reanimated';
 
@@ -9,7 +10,8 @@ import { NativeOnlyAnimatedView } from '@/components/ui/native-only-animated-vie
 import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/ui/text';
 import { formatTime } from '@/lib/date-format';
-import type { PrayerEntry, PrayerStatus, PrayerTimeline } from '@/lib/prayer-times';
+import { isRemindable, type PrayerReminders } from '@/lib/reminder-store';
+import type { PrayerEntry, PrayerName, PrayerStatus, PrayerTimeline } from '@/lib/prayer-times';
 import { cn } from '@/lib/utils';
 
 type PrayerListProps = {
@@ -18,6 +20,8 @@ type PrayerListProps = {
   /** e.g. `Muslim World League · Standard`. */
   methodLabel: string;
   onPressMethod: () => void;
+  reminders: PrayerReminders;
+  onToggleReminder: (name: PrayerName) => void;
 };
 
 /**
@@ -26,7 +30,14 @@ type PrayerListProps = {
  * More translucent than the hero (`bg-card/80` against its `/90`), so the
  * hierarchy between the two is carried by opacity as well as by size.
  */
-export function PrayerList({ timeline, use24h, methodLabel, onPressMethod }: PrayerListProps) {
+export function PrayerList({
+  timeline,
+  use24h,
+  methodLabel,
+  onPressMethod,
+  reminders,
+  onToggleReminder,
+}: PrayerListProps) {
   return (
     <Card className="bg-card/80 gap-0 py-2">
       {timeline.entries.map((entry, index) => (
@@ -35,7 +46,13 @@ export function PrayerList({ timeline, use24h, methodLabel, onPressMethod }: Pra
           entering={FadeInDown.delay(80 + index * 45)
             .duration(260)
             .reduceMotion(ReduceMotion.System)}>
-          <PrayerRow entry={entry} status={timeline.statusOf[entry.name]} use24h={use24h} />
+          <PrayerRow
+            entry={entry}
+            status={timeline.statusOf[entry.name]}
+            use24h={use24h}
+            reminderOn={reminders[entry.name]}
+            onToggleReminder={onToggleReminder}
+          />
           {index < timeline.entries.length - 1 ? (
             // Inset to where the text starts, the standard list idiom.
             <Separator className="ml-14 mr-4 w-auto opacity-60" />
@@ -60,6 +77,8 @@ type PrayerRowProps = {
   entry: PrayerEntry;
   status: PrayerStatus;
   use24h: boolean;
+  reminderOn: boolean;
+  onToggleReminder: (name: PrayerName) => void;
 };
 
 /*
@@ -70,7 +89,7 @@ type PrayerRowProps = {
  * There are deliberately no checkmarks -- the app does not track whether the
  * user actually prayed, and implying that it does would be wrong.
  */
-function PrayerRow({ entry, status, use24h }: PrayerRowProps) {
+function PrayerRow({ entry, status, use24h, reminderOn, onToggleReminder }: PrayerRowProps) {
   const isCurrent = status === 'current';
   const isNext = status === 'next';
   const isPast = status === 'past';
@@ -112,6 +131,46 @@ function PrayerRow({ entry, status, use24h }: PrayerRowProps) {
       <Text style={TABULAR} className={timeClass}>
         {formatTime(entry.time, use24h)}
       </Text>
+      <ReminderToggle entry={entry} on={reminderOn} onToggle={onToggleReminder} />
     </View>
+  );
+}
+
+type ReminderToggleProps = {
+  entry: PrayerEntry;
+  on: boolean;
+  onToggle: (name: PrayerName) => void;
+};
+
+/**
+ * Per-prayer alarm toggle, trailing the time.
+ *
+ * The slot keeps its width for Sunrise -- which has no reminder, being a
+ * boundary rather than a prayer -- so the time column stays right-aligned down
+ * the whole list instead of Sunrise's time sliding out past the others.
+ *
+ * On and off differ in *shape* as well as colour (the struck-through clock),
+ * because a colour-only state is invisible to a colour-blind user and nearly
+ * invisible to anyone in sunlight.
+ */
+function ReminderToggle({ entry, on, onToggle }: ReminderToggleProps) {
+  if (!isRemindable(entry.name)) return <View className="w-8" />;
+
+  return (
+    <Pressable
+      onPress={() => onToggle(entry.name)}
+      // The icon is small on purpose -- it is secondary to the time -- so the
+      // touch target comes from the padding and hit slop, not from the glyph.
+      hitSlop={10}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: on }}
+      accessibilityLabel={`${entry.label} reminder`}
+      accessibilityHint={on ? 'Turns the reminder off' : 'Turns the reminder on'}
+      className="w-8 items-end justify-center py-2 active:opacity-60">
+      <Icon
+        as={on ? AlarmClock : AlarmClockOff}
+        className={cn('size-4', on ? 'text-primary' : 'text-muted-foreground opacity-50')}
+      />
+    </Pressable>
   );
 }

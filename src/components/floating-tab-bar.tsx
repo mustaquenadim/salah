@@ -61,7 +61,7 @@ const INDICATOR_SPRING = { damping: 18, stiffness: 220, mass: 0.6 } as const;
 /**
  * The floating pill tab bar. Renders as the child of `<TabList asChild>`, so it
  * receives the `TabTrigger` elements as `children` and lays them out in evenly
- * sized slots with an emerald circle that springs between them.
+ * sized slots with a `primary`-tinted circle that springs between them.
  *
  * Focus is read from the router rather than from the buttons, which keeps the
  * indicator and the icon tint driven by the same source.

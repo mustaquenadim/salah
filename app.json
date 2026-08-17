@@ -42,6 +42,18 @@
         }
       ],
       [
+        "expo-notifications",
+        {
+          "sounds": ["./assets/audios/adhan_notification.wav"]
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "enableBackgroundPlayback": true
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "backgroundColor": "#208AEF",
