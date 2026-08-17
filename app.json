@@ -42,6 +42,12 @@
         }
       ],
       [
+        "expo-sensors",
+        {
+          "motionPermission": "Salah reads device motion so the Qibla compass knows how you're holding your phone."
+        }
+      ],
+      [
         "expo-notifications",
         {
           "sounds": ["./assets/audios/adhan_notification.wav"]
